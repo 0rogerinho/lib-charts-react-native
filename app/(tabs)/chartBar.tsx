@@ -8,11 +8,9 @@ export default function RadarChart() {
   return (
     <View style={styles.container}>
       <View style={styles.box}>
-        <ScrollView horizontal>
-          {defaultChartData.map((item, index) => (
-            <Fragment key={index}>{item}</Fragment>
-          ))}
-        </ScrollView>
+        {defaultChartData.map((item, index) => (
+          <Fragment key={index}>{item}</Fragment>
+        ))}
       </View>
     </View>
   );
@@ -25,11 +23,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
-    borderWidth: 4,
   },
   box: {
+    width: '100%',
+    height: 400,
     justifyContent: 'center',
     alignItems: 'center',
-    height: 410,
   },
 });

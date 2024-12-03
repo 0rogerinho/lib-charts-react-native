@@ -41,8 +41,6 @@ const fieldMap: FieldMap[] = [
 export function LineTwo() {
   const [toolTip, setToolTip] = useState<CurrentTooltip | null>(null);
 
-  console.log(toolTip);
-
   function handleClickMarker(item: CurrentTooltip | null) {
     setToolTip(item?.label === toolTip?.label ? null : item);
   }

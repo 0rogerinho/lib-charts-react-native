@@ -1,71 +1,40 @@
 import BarChart from '@/components/ui/charts/chartBar';
-import {
-  CircleMarker,
-  RadarChartContainer,
-  RadarChartLabels,
-  RadarField,
-  Tooltip,
-} from '@/components/ui/charts/RadarChart';
-import { CurrentTooltip } from '@/context/RadarChart';
-import { LayoutView } from '@/layout/LayoutView';
-import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Bar } from '@/components/ui/charts/chartBar/components/Bar';
+import { CartesianGrid } from '@/components/ui/charts/chartBar/components/CartesianGrid';
+import { Tooltip } from '@/components/ui/charts/chartBar/components/Tooltip';
+import { XAxis } from '@/components/ui/charts/chartBar/components/XAxios';
+import { YAxis } from '@/components/ui/charts/chartBar/components/YAxis';
+import React from 'react';
+import { StyleSheet, View } from 'react-native';
 
 const data = [
-  { label: 'January', data: { desktop: 7, mobile: 5 } },
-  { label: 'February', data: { desktop: 7, mobile: 6 } },
-  { label: 'March', data: { desktop: 5, mobile: 8 } },
-  { label: 'April', data: { desktop: 4, mobile: 2 } },
-  { label: 'May', data: { desktop: 2, mobile: 5 } },
-  { label: 'jun', data: { desktop: 2, mobile: 5 } },
-  // { label: 'jul', data: { desktop: 2, mobile: 5 } },
-];
-
-const fieldMap: {
-  keyScore: 'desktop' | 'mobile';
-  fieldColor: string;
-  circleColor: string;
-}[] = [
-  {
-    keyScore: 'desktop',
-    fieldColor: 'rgba(255, 20, 147, 0.2)',
-    circleColor: 'rgba(255, 20, 147, 0.8)',
-  },
-  {
-    keyScore: 'mobile',
-    fieldColor: 'rgba(50, 205, 50, 0.5)',
-    circleColor: 'rgba(50, 205, 50, 1)',
-  },
+  { label: 'Jan', value: { smartphone: 20, laptop: 10, ex: 50 } },
+  { label: 'Fev', value: { smartphone: 30, laptop: 20, ex: 50 } },
+  { label: 'Mar', value: { smartphone: 10, laptop: 30, ex: 50 } },
+  { label: 'Abr', value: { smartphone: 20, laptop: 40, ex: 50 } },
+  { label: 'Mai', value: { smartphone: 20, laptop: 40, ex: 50 } },
 ];
 
 export function ChartBarDefault() {
-  const [toolTip, setToolTip] = useState<CurrentTooltip | null>(null);
-
-  function handleClickMarker(item: CurrentTooltip | null) {
-    setToolTip(item?.label === toolTip?.label ? null : item);
-  }
-
   return (
-    <LayoutView style={styles.layout}>
-      <BarChart />
-    </LayoutView>
+    <View style={styles.layout}>
+      <BarChart data={data}>
+        <YAxis />
+        <XAxis />
+        <Tooltip />
+        <CartesianGrid />
+        <Bar dataKey="smartphone" fill="red" stackId="a" />
+        <Bar dataKey="laptop" fill="yellow" stackId="a" />
+      </BarChart>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   layout: {
-    alignItems: 'center',
+    width: '100%',
+    height: 350,
     justifyContent: 'center',
-    paddingVertical: 24,
-    backgroundColor: '#141D2F',
-  },
-  tooltip: {
-    backgroundColor: 'rgba(255, 20, 147, 1)',
-    borderRadius: 10,
-    padding: 10,
-  },
-  text: {
-    fontWeight: '400',
-    color: 'white',
+    alignItems: 'center',
   },
 });

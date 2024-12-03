@@ -49,7 +49,7 @@ export function Default() {
       <RadarChartContainer
         data={data}
         size={350}
-        maxPolygons={2}
+        maxPolygons={3}
         showLabels
         stroke="#344974"
         strokeWidth={2}
